@@ -1,0 +1,126 @@
+﻿<Window x:Class="LoginUI.Views.DashboardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:LoginUI.Views"
+
+        mc:Ignorable="d" Height="700" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="#FFF4F8F9" Background="#FFF2EBEB">
+    <Window.Resources>
+
+
+
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Background="LightGray">
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF166CC6" >
+            <TextBlock Text="Inventory Management System" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="White" >
+                    <StackPanel Width="150">
+                        <Button Content="Account"/>
+                        <Button x:Name="Minimize" Content="Minimize" Click="Minimize_Click"/>
+                        <Separator/>
+                        <Button x:Name="ButtonPopUp" Content="Logout" Click="ButtonPopUp_Click" />
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1D3F8E">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Foreground="Black" Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <Button x:Name="ButtonOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Menu" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="LightCyan">
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnInventory" Width="50" Height="45" VerticalAlignment="Center" Background="#FF1D3F8E" Click="BtnInventory_Click">
+                                <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="35" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            </Button>
+                            <TextBlock Text="Inventory" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnTransaction" Width="50" Height="45" VerticalAlignment="Center" Background="#FF1D3F8E" Click="BtnTransaction_Click">
+                                <materialDesign:PackIcon Kind="Cash" Height="30" Width="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                            <TextBlock Text="Billing" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnReport" Width="50"  Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF1D3F8E" Click="BtnReport_Click">
+                                <materialDesign:PackIcon Kind="BookMultiple" Height="36" Width="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Button>
+                            <TextBlock Text="Report" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnReturn" Width="50"  Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF1D3F8E" Click="BtnReturn_Click">
+                                <materialDesign:PackIcon Kind="AssignmentReturn" Height="36" Width="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Button>
+                            <TextBlock Text="Return Items" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnCreditCustomer" Width="50"  Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF1D3F8E" Click="BtnCreditCustomer_Click">
+                                <materialDesign:PackIcon Kind="CreditCards" Height="36" Width="18" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Button>
+                            <TextBlock Text="Credit Customers" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                </ListView>
+
+            </StackPanel>
+        </Grid>
+        <!--<Grid Margin="60,60,0,0">
+            <ContentControl Content="{Binding}"/>
+
+        </Grid>-->
+
+    </Grid>
+
+</Window>

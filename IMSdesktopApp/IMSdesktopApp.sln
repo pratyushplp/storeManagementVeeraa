@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginUI", "LoginUI\LoginUI.csproj", "{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VeeraIMS", "VeeraIMS\VeeraIMS.vdproj", "{9D2316DD-901C-46F5-8539-EE59542BF8D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D2316DD-901C-46F5-8539-EE59542BF8D3}.Debug|Any CPU.ActiveCfg = Debug
+		{9D2316DD-901C-46F5-8539-EE59542BF8D3}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFCA9114-0F52-4DCA-81FA-28E0F903D6A6}
+	EndGlobalSection
+EndGlobal

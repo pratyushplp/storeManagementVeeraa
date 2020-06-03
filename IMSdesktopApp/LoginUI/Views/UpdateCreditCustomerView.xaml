@@ -1,0 +1,121 @@
+﻿<Window x:Class="LoginUI.Views.UpdateCreditCustomerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginUI.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
+        mc:Ignorable="d" Height="700" Width="1080" WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" >
+
+
+
+    <Grid Background="LightGray">
+
+
+
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="170" Width="1000" >
+            <ListView>
+                <!--Note ItemContainerStyle is used so that the whole listview item space wont be highlighted-->
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListViewItem Height="50" HorizontalAlignment="right" VerticalAlignment="Top" Margin="0,10,0,0" >
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker Name="datePicker" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Short"    />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem>
+                    <TextBlock Text="Credit Customers"  FontWeight="Bold" FontSize="16" Margin="0,10,0,0"></TextBlock>
+                </ListViewItem>
+                <ListViewItem Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Customer Name/Id" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" ></TextBlock>
+                        <TextBox   Name="txtSearch"   Margin="0,0,20,0" Height="30" Width="150" VerticalAlignment="Center" Background="DarkGray"  Foreground="Black" TextAlignment="Center" />
+
+                        <Button materialDesign:ButtonAssist.CornerRadius="8"  Background="Orange"   Margin="5,0,0,0" Click="customerSearchButton_Click">
+                            <materialDesign:PackIcon Kind="Search" Height="30" Width="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Button>
+                        <Button materialDesign:ButtonAssist.CornerRadius="8"  Background="SeaGreen"   Margin="20,0,0,0" Click="customerShowAllButton_Click">
+                            <materialDesign:PackIcon Kind="FileDocumentBox" Height="30" Width="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Button>
+
+
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+
+
+        <Grid >
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="470" Width="400" Margin="0,0,50,30">
+                <ListView>
+                    <ListViewItem >
+                        <TextBlock Text="Add/Delete Customers"  FontWeight="Bold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Customer Name"    VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" FontWeight="DemiBold" TextAlignment="Left"  />
+                            <TextBox   Name="txtCustomerName"   Margin="20,0,0,0" Height="25" Width="150" VerticalAlignment="Center" Background="DarkGray"  TextAlignment="Center" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Phone Number"    VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" FontWeight="DemiBold" TextAlignment="Left"  />
+                            <TextBox  Name="txtPhoneNumber"   Margin="20,0,0,0" Height="25" Width="150" VerticalAlignment="Center" Background="DarkGray"  TextAlignment="Center" />
+                        </StackPanel>
+                    </ListViewItem>
+
+
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- NOTE: REMOVED the material design effect as not working,<TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox }"     Margin="20,0,0,0" Height="30" Width="200" VerticalAlignment="Center" Background="DarkGray" />-->
+
+                            <TextBlock Text="Credit Amount"    VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" FontWeight="DemiBold" TextAlignment="left"  />
+                            <TextBox   Name="txtCreditAmount"  PreviewTextInput="TxtQty_PreviewTextInput" Margin="20,0,0,0" Height="25" Width="150" VerticalAlignment="Center" Background="DarkGray"  TextAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+
+      
+
+
+                </ListView>
+
+                <Button Name="btnAdd" materialDesign:ButtonAssist.CornerRadius="8" Margin="50,50,50,20" Width="80" Content="Add" Click="btnAdd_Button_Click" FontSize="10" Background="DarkGreen" />
+                <Button Name="btnDelete" materialDesign:ButtonAssist.CornerRadius="8" Margin="50,10,50,20" Width="80" Content="Delete" Click="btnDelete_Button_Click" FontSize="10" Background="DarkRed" />
+
+            </StackPanel>
+
+        </Grid>
+
+        <DataGrid Name="dgvCreditCustomer"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="400" Width="500" Margin="45,0,0,60" >
+            <DataGrid.ItemContainerStyle>
+                <!--double click the row in datagrid, and the corresponding textbox are filled-->
+                <!--used to update product-->
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRowHeader_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+
+
+
+    </Grid>
+
+</Window>
+
+
+
+

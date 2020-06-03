@@ -1,0 +1,20 @@
+﻿LoginUI
+
+
+winexe
+C#
+.cs
+C:\Users\Pratyus Pradhan\source\repos\IMSdesktopApp\LoginUI\obj\Debug\
+LoginUI
+none
+false
+DEBUG;TRACE
+C:\Users\Pratyus Pradhan\source\repos\IMSdesktopApp\LoginUI\App.xaml
+161539686875
+51001242449
+39-835466063
+29-1298343888
+MainWindow.xaml;Views\CreditCustomerOptionsView.xaml;Views\CreditCustomerView.xaml;Views\CreditPopUpWindow.xaml;Views\DashboardView.xaml;Views\ProductSalesReport.xaml;Views\CashSalesReportView.xaml;Views\InventoryReportView.xaml;Views\LoginView.xaml;Views\ProductView.xaml;Views\ReportView.xaml;Views\ReturnHistoryView.xaml;Views\ReturnOptionsView.xaml;Views\ReturnView.xaml;Views\TransactionView.xaml;Views\UpdateCreditCustomerView.xaml;
+
+False
+

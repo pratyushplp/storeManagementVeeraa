@@ -1,0 +1,47 @@
+﻿<Window x:Class="LoginUI.Views.CreditCustomerOptionsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginUI.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        mc:Ignorable="d"
+         Height="700" Width="1080"  WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightGray">
+    <Grid>
+
+
+        <ListView>
+            <!--To remove the water mark effect caused by list view-->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListViewItem>
+                <TextBlock Text="CREDIT CUSTOMER" TextDecorations="underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50" FontSize="20" FontWeight="Bold"/>
+            </ListViewItem>
+
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="1." Margin="50,20,0,20" FontWeight="SemiBold" FontSize="16"/>
+                    <Button Name="btnUpdateCreditBalance" Margin="20,0,0,0" Height="40" Width="200" Content="Update Credit Balance" Click="BtnUpdateCreditBalance_Click"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="2." Margin="50,20,0,20" FontWeight="SemiBold" FontSize="16"/>
+                    <Button Name="btnUpdateCreditCustomer" Margin="20,0,0,0" Height="40" Width="200" Content="Add/Remove Customers" Click="BtnUpdateCreditCustomer_Click"/>
+                </StackPanel>
+            </ListViewItem>
+        </ListView>
+
+    </Grid>
+</Window>

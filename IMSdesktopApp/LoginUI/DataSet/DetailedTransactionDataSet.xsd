@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DetailedTransactionDataSet" targetNamespace="http://tempuri.org/DetailedTransactionDataSet.xsd" xmlns:mstns="http://tempuri.org/DetailedTransactionDataSet.xsd" xmlns="http://tempuri.org/DetailedTransactionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DetailedTransactionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DetailedTransactionDataSet" msprop:Generator_UserDSName="DetailedTransactionDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DetailTransaction" msprop:Generator_TableClassName="DetailTransactionDataTable" msprop:Generator_TableVarName="tableDetailTransaction" msprop:Generator_TablePropName="DetailTransaction" msprop:Generator_RowDeletingName="DetailTransactionRowDeleting" msprop:Generator_RowChangingName="DetailTransactionRowChanging" msprop:Generator_RowEvHandlerName="DetailTransactionRowChangeEventHandler" msprop:Generator_RowDeletedName="DetailTransactionRowDeleted" msprop:Generator_UserTableName="DetailTransaction" msprop:Generator_RowChangedName="DetailTransactionRowChanged" msprop:Generator_RowEvArgName="DetailTransactionRowChangeEvent" msprop:Generator_RowClassName="DetailTransactionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="product_code" msprop:Generator_ColumnVarNameInTable="columnproduct_code" msprop:Generator_ColumnPropNameInRow="product_code" msprop:Generator_ColumnPropNameInTable="product_codeColumn" msprop:Generator_UserColumnName="product_code" type="xs:string" minOccurs="0" />
+              <xs:element name="selling_price_per_unit" msprop:Generator_ColumnVarNameInTable="columnselling_price_per_unit" msprop:Generator_ColumnPropNameInRow="selling_price_per_unit" msprop:Generator_ColumnPropNameInTable="selling_price_per_unitColumn" msprop:Generator_UserColumnName="selling_price_per_unit" type="xs:float" minOccurs="0" />
+              <xs:element name="cost_per_unit" msprop:Generator_ColumnVarNameInTable="columncost_per_unit" msprop:Generator_ColumnPropNameInRow="cost_per_unit" msprop:Generator_ColumnPropNameInTable="cost_per_unitColumn" msprop:Generator_UserColumnName="cost_per_unit" type="xs:float" minOccurs="0" />
+              <xs:element name="sum_qty" msprop:Generator_ColumnVarNameInTable="columnsum_qty" msprop:Generator_ColumnPropNameInRow="sum_qty" msprop:Generator_ColumnPropNameInTable="sum_qtyColumn" msprop:Generator_UserColumnName="sum_qty" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
