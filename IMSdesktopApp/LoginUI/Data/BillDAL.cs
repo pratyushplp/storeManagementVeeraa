@@ -208,5 +208,87 @@ namespace LoginUI.Data
 
         #endregion
 
+        #region show history bills
+        public DataTable ShowBillHistory()
+        {
+
+            string sql = @"select td.bill_number,td.product_code,td.product_type, td.quantity ,td.unit_selling_price , td.total_selling_price, tt.transaction_date,tt.discount as total_discount,tt.payment_method, tt.total_amount as total_bill_amount
+                           from TransactionTable tt
+                           inner
+                           join TransactionDetail td
+                           on tt.bill_number = td.bill_number
+                           order by td.bill_number";
+
+            DataTable histBillDatatable = new DataTable();
+            SqlCommand cmd = new SqlCommand(sql, DbClass.con);
+            // open database connection
+
+            //sql data adapter to hold the value from database tempororily
+
+            try
+            {
+                DbClass.openConnection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(histBillDatatable);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                DbClass.closeConnection();
+
+            }
+
+            return histBillDatatable;
+
+        }
+
+
+        #endregion
+
+        #region Search bill History
+        public DataTable SearchHistBills(int billNo)
+        {
+
+            string sql = @"select td.bill_number,td.product_code,td.product_type, td.quantity ,td.unit_selling_price , td.total_selling_price, tt.transaction_date,tt.discount as total_discount,tt.payment_method, tt.total_amount as total_bill_amount
+                           from TransactionTable tt
+                           inner join TransactionDetail td
+                           on tt.bill_number = td.bill_number
+                           where td.bill_number = @bill_number
+                           order by td.bill_number ";
+            DataTable billDatatable = new DataTable();
+            SqlCommand cmd = new SqlCommand(sql, DbClass.con);
+            cmd.Parameters.AddWithValue("@bill_number", billNo);
+            // open database connection
+
+            //sql data adapter to hold the value from database tempororily
+
+            try
+            {
+                DbClass.openConnection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(billDatatable);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                DbClass.closeConnection();
+
+            }
+
+            return billDatatable;
+        }
+
+        #endregion 
+
+
+
+
     }
 }
+

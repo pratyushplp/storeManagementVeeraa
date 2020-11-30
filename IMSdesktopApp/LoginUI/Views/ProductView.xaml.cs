@@ -71,17 +71,20 @@ namespace LoginUI.Views
             product.productCode = txtProductCode.Text;
             product.deliveryAgent = txtDeliveryAgent.Text;
             product.vendor = txtVendor.Text;
-            product.unitPriceINR = float.Parse(txtUnitPriceINR.Text);
-            product.unitPriceNPR = float.Parse(txtUnitPriceNPR.Text);
-            product.totalUnitIn = float.Parse(txtRemainingUnit.Text);
-            product.remainingUnit = float.Parse(txtTotalUnitIn.Text);
-            product.carrierChargePerUnit = float.Parse(txtCarrierCharge.Text);
-            product.totalCostPerUnit = float.Parse(txtTotalCost.Text);
-            product.sellingPrice = float.Parse(txtSellingPrice.Text);
+            product.unitPriceINR = float.Parse(string.IsNullOrWhiteSpace(txtUnitPriceINR.Text) == true ? "0" : txtUnitPriceINR.Text);
+            product.unitPriceNPR = float.Parse(string.IsNullOrWhiteSpace(txtUnitPriceNPR.Text) == true ? "0" : txtUnitPriceNPR.Text);
+            product.totalUnitIn =  float.Parse(string.IsNullOrWhiteSpace(txtTotalUnitIn.Text) == true ? "0" : txtTotalUnitIn.Text);
+            product.remainingUnit = float.Parse(string.IsNullOrWhiteSpace(txtRemainingUnit.Text) == true ? "0" : txtRemainingUnit.Text); 
+            product.carrierChargePerUnit = float.Parse(string.IsNullOrWhiteSpace(txtCarrierCharge.Text) == true ? "0" : txtCarrierCharge.Text);
+            product.totalCostPerUnit = float.Parse(string.IsNullOrWhiteSpace(txtTotalCost.Text) == true ? "0" : txtTotalCost.Text);
+            product.sellingPrice = float.Parse(string.IsNullOrWhiteSpace(txtSellingPrice.Text) == true ? "0" : txtSellingPrice.Text);
             product.addedDate = DateTime.Now;
-            product.remainingUnit = float.Parse(txtRemainingUnit.Text);
 
-            //bool success = productData.insert(product);
+            if (product == null  ||string.IsNullOrWhiteSpace(product.productCode) || string.IsNullOrWhiteSpace(product.productType))
+            {
+                MessageBox.Show("Failed to Add Product!. Please enter the product details");
+                return;
+            }
 
             Task<bool> task = new Task<bool>(() => productData.insert(product));
             task.Start();
@@ -128,7 +131,12 @@ namespace LoginUI.Views
 
         private async void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to update this product?", "Return Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if ( string.IsNullOrWhiteSpace(txtProductCode.Text) || string.IsNullOrWhiteSpace(product.productType))
+            {
+                MessageBox.Show("Failed to Update Product!. Please enter the product details");
+                return;
+            }
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to update this product? Please make sure all the updated product details are filled correctly", "Return Confirmation", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
 
@@ -144,10 +152,11 @@ namespace LoginUI.Views
                 product.carrierChargePerUnit = float.Parse(txtCarrierCharge.Text);
                 product.totalCostPerUnit = float.Parse(txtTotalCost.Text);
                 product.sellingPrice = float.Parse(txtSellingPrice.Text);
-                product.remainingUnit = float.Parse(txtRemainingUnit.Text);
                 product.Id = int.Parse(txtId.Text);
 
                 //bool success = productData.update(product);
+
+
 
                 Task<bool> task = new Task<bool>(() => productData.update(product));
                 task.Start();
@@ -175,6 +184,13 @@ namespace LoginUI.Views
 
         private async void deleteButton_Click(object sender, RoutedEventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(txtProductCode.Text) )
+            {
+                MessageBox.Show("Failed to Delete Product!. Please enter the product details");
+                return;
+            }
+
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to delete this product?", "Return Confirmation", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {

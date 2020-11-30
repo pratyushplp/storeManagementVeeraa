@@ -219,20 +219,23 @@ namespace LoginUI.Data
         {
             DataTable data = new DataTable();
             string sql = @"with a as
-							(
-							select  product_code, unit_selling_price,sum(quantity) as sum_qty
-							from transactionDetail
-							where bill_number in (select bill_number from transactionTable where CAST(transaction_date as date) BETWEEN CAST(@beginningDate as date) AND CAST(@endingDate as date))
-							group by product_code,unit_selling_price
-							),b as
-							(
-							select distinct total_cost_per_unit as cost_per_unit,product_code 
-							from  ProductTable
-							) 
-							select distinct a.product_code,a.unit_selling_price as selling_price_per_unit,b.cost_per_unit,a.sum_qty
-							from a
-							left join b
-							on a.product_code =b.product_code";
+                          (
+                          select  product_code, unit_selling_price,sum(quantity) as sum_qty
+                          from transactionDetail
+                          where bill_number in (select bill_number from transactionTable where CAST(transaction_date as date) BETWEEN CAST(@beginningDate as date) AND CAST(@endingDate as date))
+                          group by product_code,unit_selling_price
+                          ),b as
+                          (
+                          select MAX(total_cost_per_unit) as cost_per_unit,product_code
+                          from  ProductTable
+                          where total_unit_in <> remaining_unit --i.e only sold products
+                          group by product_code
+                          ) 
+                          
+                          select distinct a.product_code,a.unit_selling_price as selling_price_per_unit,b.cost_per_unit,a.sum_qty
+                          from a
+                          left join b
+                          on a.product_code =b.product_code ";
 
             SqlCommand cmd = new SqlCommand(sql, DbClass.con);
             cmd.Parameters.AddWithValue("@beginningDate", BeginningDate);

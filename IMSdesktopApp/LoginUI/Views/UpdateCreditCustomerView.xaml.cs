@@ -90,18 +90,16 @@ namespace LoginUI.Views
         {
             CreditCustomer creditCustomer = new CreditCustomer();
 
-            creditCustomer.customerName = txtCustomerName.Text;
-            if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text)) creditCustomer.phoneNumber = "";
-            else creditCustomer.phoneNumber = txtPhoneNumber.Text;
-            if (string.IsNullOrWhiteSpace(txtCreditAmount.Text)) creditCustomer.creditAmount = 0;
-            else creditCustomer.creditAmount = float.Parse(txtCreditAmount.Text);
-            creditCustomer.addedDate = DateTime.Now;
-
-            if(string.IsNullOrWhiteSpace(txtCustomerName.Text))
+            if(txtCustomerName.Text == null || string.IsNullOrWhiteSpace(txtCustomerName.Text))
             {
                 MessageBox.Show("Customer Name is a Mandotory field! Please enter the customer name", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            creditCustomer.customerName = txtCustomerName.Text;
+            creditCustomer.phoneNumber = (txtPhoneNumber.Text == null || string.IsNullOrWhiteSpace(txtPhoneNumber.Text)) ? "" : txtPhoneNumber.Text;
+            creditCustomer.creditAmount = (txtCreditAmount.Text == null || string.IsNullOrWhiteSpace(txtCreditAmount.Text)) ? (float)0 : float.Parse(txtCreditAmount.Text);
+            creditCustomer.addedDate = DateTime.Now;
+
 
             bool success = false;
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Add Credit Customer Confirmation", System.Windows.MessageBoxButton.YesNo);

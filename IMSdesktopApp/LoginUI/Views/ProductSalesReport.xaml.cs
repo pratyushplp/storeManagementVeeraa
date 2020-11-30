@@ -29,14 +29,14 @@ namespace LoginUI.Views
         ReportDAL reportDAL = new ReportDAL();
 
 
-        private void btnDateSearch_Click(object sender, RoutedEventArgs e)
+        private async void btnDateSearch_Click(object sender, RoutedEventArgs e)
         {
             ReportViewer2.Reset();
             if (DPFrom != null && DPTo != null && DPFrom.SelectedDate !=null && DPTo.SelectedDate != null)
             {
                 DateTime beginningDate = DPFrom.SelectedDate.Value.Date;
                 DateTime endingDate = DPTo.SelectedDate.Value.Date;
-                DataTable dt = reportDAL.getDetailedSalesByDate(beginningDate, endingDate);
+                DataTable dt =await Task.Run( () => reportDAL.getDetailedSalesByDate(beginningDate, endingDate));
                 ReportDataSource ds = new ReportDataSource("DetailedTransactionDataSet", dt);
 
                 ReportViewer2.LocalReport.DataSources.Add(ds);

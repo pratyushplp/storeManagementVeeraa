@@ -20,7 +20,7 @@ namespace LoginUI.Data
 
             string sql = @"select customer_id as 'Id', customer_name ,credit_amount,phone_number,added_date as 'joined_date'  from creditCustomer where 
                             ( customer_name like '%"+input+ @"%' or 
-                            customer_id like '%"+ input + @"%') and active = '1'";
+                            customer_id like '"+ input + @"') and active = '1'";
 
             SqlCommand cmd = new SqlCommand(sql, DbClass.con);
             
@@ -109,7 +109,7 @@ namespace LoginUI.Data
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Credit Customer not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             finally

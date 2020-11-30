@@ -59,7 +59,29 @@ namespace LoginUI.Data
 
         }
 
-       //  Code for Encryption:
+        public static SqlConnection openConnectionForBulk()
+        {
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.ConnectionString = GetConnectionStrings();
+                    con.Open();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The system failed to establish a connection as " + Environment.NewLine + "Description: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return con;
+        }
+
+
+
+
+        //  Code for Encryption:
         public static string Encrypt(string clearText)
         {
             string EncryptionKey = "xyz123";

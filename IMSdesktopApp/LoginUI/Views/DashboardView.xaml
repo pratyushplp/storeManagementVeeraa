@@ -74,7 +74,7 @@
 
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal" >
-                            <Button Name="btnTransaction" Width="50" Height="45" VerticalAlignment="Center" Background="#FF1D3F8E" Click="BtnTransaction_Click">
+                            <Button Name="btnTransaction" Width="50" Height="45" VerticalAlignment="Center" Background="#FF1D3F8E" Click="BtnBillOption_Click">
                                 <materialDesign:PackIcon Kind="Cash" Height="30" Width="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
                             <TextBlock Text="Billing" VerticalAlignment="Center" Margin="10"/>
@@ -111,6 +111,27 @@
                         </StackPanel>
 
                     </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnLoadToDb" Width="50"  Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF1D3F8E" Click="btnLoadToDb_Click" >
+                                <materialDesign:PackIcon Kind="DatabaseImport" Height="36" Width="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Button>
+                            <TextBlock Text="Load To Database" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Name="btnSyncBackupRestore" Width="50"  Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF1D3F8E" Click="btnSyncBackupRestore_Click" >
+                                <materialDesign:PackIcon Kind="Sync" Height="36" Width="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Button>
+                            <TextBlock Text="Sync-Backup-Restore" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+
+                    </ListViewItem>
+
 
                 </ListView>
 

@@ -32,27 +32,27 @@ select * from AdminUser
 
 select * from productTable where product_code='KS101'
 
---CREATE TABLE [dbo].[ProductTable]
---(
---	[Id] INT NOT NULL Identity(1,1) , 
---    [product_type] VARCHAR(255) NOT NULL, 
---    [brand_code] VARCHAR(50)  NULL, 
---    [product_code] VARCHAR(50) NOT NULL, 
---    [delivery_agent] VARCHAR(255) NULL, 
---    [vendor] VARCHAR(255) NULL, 
---    [unit_price_INR] FLOAT NULL, 
---    [unit_price_NPR] FLOAT NULL, 
---    [total_unit_in] FLOAT NULL,
---    [remaining_unit]  FLOAT NULL,
---    [carrier_charge_unit] FLOAT NULL, 
---    [total_cost_per_unit] FLOAT NULL, 
---    [selling_price] FLOAT NULL,
---	[added_date] DateTime,
---    PRIMARY KEY ([Id])
---)
+CREATE TABLE [dbo].[ProductTable]
+(
+	[Id] INT NOT NULL Identity(1,1) , 
+    [product_type] VARCHAR(255) NOT NULL, 
+    [brand_code] VARCHAR(50)  NULL, 
+    [product_code] VARCHAR(50) NOT NULL, 
+    [delivery_agent] VARCHAR(255) NULL, 
+    [vendor] VARCHAR(255) NULL, 
+    [unit_price_INR] FLOAT NULL, 
+    [unit_price_NPR] FLOAT NULL, 
+    [total_unit_in] FLOAT NULL,
+    [remaining_unit]  FLOAT NULL,
+    [carrier_charge_unit] FLOAT NULL, 
+    [total_cost_per_unit] FLOAT NULL, 
+    [selling_price] FLOAT NULL,
+	[added_date] DateTime,
+    PRIMARY KEY ([Id])
+)
 
 
-
+drop table productTable
 
 select * from TransactionDetail
 
@@ -212,7 +212,7 @@ GO
                          --   WHERE a.trans_date BETWEEN CAST('11/17/2019 12:00:00 AM' as date) AND CAST('11/17/2019 12:00:00 AM' as date)
 
 
--- for detailed sales data
+-- for detailed sales data (see updated query below this)
 
 							--with a as
 							--(
@@ -229,3 +229,41 @@ GO
 							--from a
 							--left join b
 							--on a.product_code =b.product_code
+
+
+-- for detailed sales data (see updated query )
+--with a as
+--(
+--select  product_code, unit_selling_price,sum(quantity) as sum_qty
+--from transactionDetail
+--where bill_number in (select bill_number from transactionTable where CAST(transaction_date as date) BETWEEN CAST(@beginningDate as date) AND CAST(@endingDate as date))
+--group by product_code,unit_selling_price
+--),b as
+--(
+--select MAX(total_cost_per_unit) as cost_per_unit,product_code
+--from  ProductTable
+--where total_unit_in <> remaining_unit --i.e only sold products
+--group by product_code
+--) 
+
+--select distinct a.product_code,a.unit_selling_price as selling_price_per_unit,b.cost_per_unit,a.sum_qty
+--from a
+--left join b
+--on a.product_code =b.product_code 
+
+
+-- bill tab
+
+--select td.bill_number,td.product_code,td.product_type, td.quantity ,td.unit_selling_price , td.total_selling_price, tt.transaction_date,tt.discount as total_discount,tt.payment_method, tt.total_amount as total_bill_amount
+--from TransactionTable tt
+--inner join TransactionDetail td
+--on tt.bill_number = td.bill_number
+--order by td.bill_number
+
+
+--select td.bill_number,td.product_code,td.product_type, td.quantity ,td.unit_selling_price , td.total_selling_price, tt.transaction_date,tt.discount as total_discount,tt.payment_method, tt.total_amount as total_bill_amount
+--from TransactionTable tt
+--inner join TransactionDetail td
+--on tt.bill_number = td.bill_number
+--where td.bill_number in (1)
+--order by td.bill_number

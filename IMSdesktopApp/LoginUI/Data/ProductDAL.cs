@@ -44,6 +44,42 @@ namespace LoginUI.Data
         }
         #endregion
 
+        #region to get the database schema only
+        public DataTable BuildProductSchema()
+        {
+
+            string sql = "Select * from productTable where 1=0";
+            DataTable productDatatable = new DataTable();
+            SqlCommand cmd = new SqlCommand(sql, DbClass.con);
+            // open database connection
+
+            //sql data adapter to hold the value from database tempororily
+
+            try
+            {
+                DbClass.openConnection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(productDatatable);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                DbClass.closeConnection();
+
+            }
+
+            return productDatatable;
+
+        }
+        #endregion
+
+
+
+
+
         #region method to insert product in database
         public bool insert(Product product )
         {
@@ -300,10 +336,19 @@ namespace LoginUI.Data
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(data);
                 
-                if(data.Rows.Count>0)
+                if(data.Rows.Count == 1 )
                 {
                     product.productType = data.Rows[0]["product_type"].ToString();
                     product.remainingUnit = float.Parse(data.Rows[0]["remaining_unit"].ToString());
+                    product.sellingPrice = float.Parse(data.Rows[0]["selling_price"].ToString());
+
+                }
+
+                if(data.Rows.Count > 1)
+                {
+                    product.productType = data.Rows[0]["product_type"].ToString();
+                    // for remaining unit use sum agrregate for condition where there are more than one entry of product code                   
+                    product.remainingUnit = SumOfRemainingUnit(keyword);
                     product.sellingPrice = float.Parse(data.Rows[0]["selling_price"].ToString());
 
                 }
@@ -318,7 +363,7 @@ namespace LoginUI.Data
 
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error!,check the input data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             finally
@@ -329,6 +374,79 @@ namespace LoginUI.Data
             return product;
         }
 
+
+        #endregion
+
+
+        #region sum of remaining units
+        public float SumOfRemainingUnit(string keyword)
+        {
+            float sumOfUnits = 0;
+            DataTable data = new DataTable();
+            try
+            {
+                string sql = @"Select sum(remaining_unit) as sum_units FROM ProductTable WHERE product_code = " + "'" + keyword + "'";
+                SqlCommand cmd = new SqlCommand(sql, DbClass.con);
+                DbClass.openConnection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(data);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            finally
+            {
+                DbClass.closeConnection();
+            }
+
+
+            sumOfUnits = float.Parse(data.Rows[0]["sum_units"].ToString());
+
+            return sumOfUnits;
+        }
+
+        #endregion
+
+        #region Bulk insert product data in database
+        public bool BulkInsertTable(DataTable dt)
+        {
+            bool isSuccess = false;
+            try
+            {
+
+                SqlBulkCopy objbulk = new SqlBulkCopy(DbClass.openConnectionForBulk());
+                //assign Destination table name  
+                objbulk.DestinationTableName = "ProductTable";
+
+                // NOTE: no need to perform column mapping while bulk insert if the mapping columns have the same name as destination column
+                //objbulk.ColumnMappings.Add("product_type", "product_type");
+                //objbulk.ColumnMappings.Add("brand_code", "brand_code");
+                //objbulk.ColumnMappings.Add("delivery_agent", "delivery_agent");
+                //objbulk.ColumnMappings.Add("vendor", "vendor");
+
+                //insert bulk Records into DataBase.  
+                objbulk.WriteToServer(dt);
+                isSuccess = true;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                isSuccess = false;
+            }
+
+            finally
+            {
+                DbClass.closeConnection();
+            }
+
+            return isSuccess;
+
+
+        }
 
         #endregion
 

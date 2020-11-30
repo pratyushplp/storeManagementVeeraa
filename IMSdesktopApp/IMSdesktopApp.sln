@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginUI", "LoginUI\LoginUI.csproj", "{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VeeraIMS", "VeeraIMS\VeeraIMS.vdproj", "{9D2316DD-901C-46F5-8539-EE59542BF8D3}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VeeraSMS", "VeeraSMS\VeeraSMS.vdproj", "{224E2368-14AB-4014-BAD8-C56169C6A114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveAPILibrary", "GoogleDriveAPILibrary\GoogleDriveAPILibrary.csproj", "{4D08ACE7-9621-4EA5-9C29-C8FEDCBE4D2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +19,12 @@ Global
 		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7826883C-1B7C-4A27-A33B-B2AF5A1BA288}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D2316DD-901C-46F5-8539-EE59542BF8D3}.Debug|Any CPU.ActiveCfg = Debug
-		{9D2316DD-901C-46F5-8539-EE59542BF8D3}.Release|Any CPU.ActiveCfg = Release
+		{224E2368-14AB-4014-BAD8-C56169C6A114}.Debug|Any CPU.ActiveCfg = Debug
+		{224E2368-14AB-4014-BAD8-C56169C6A114}.Release|Any CPU.ActiveCfg = Release
+		{4D08ACE7-9621-4EA5-9C29-C8FEDCBE4D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D08ACE7-9621-4EA5-9C29-C8FEDCBE4D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D08ACE7-9621-4EA5-9C29-C8FEDCBE4D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D08ACE7-9621-4EA5-9C29-C8FEDCBE4D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

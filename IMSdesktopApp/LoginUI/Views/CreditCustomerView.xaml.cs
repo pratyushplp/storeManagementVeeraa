@@ -102,7 +102,7 @@ namespace LoginUI.Views
                     }
                     else
                     {
-                        MessageBox.Show("Could Not updater Credit balance of customer!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Could not update Credit balance of customer!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     }
                 }

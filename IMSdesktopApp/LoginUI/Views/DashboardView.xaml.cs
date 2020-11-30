@@ -73,12 +73,12 @@ namespace LoginUI.Views
 
         }
 
-        private void BtnTransaction_Click(object sender, RoutedEventArgs e)
+        private void BtnBillOption_Click(object sender, RoutedEventArgs e)
         {
             bool isOpen = false;
             foreach (Window w in Application.Current.Windows)
             {
-                if (w is TransactionView)
+                if (w is BillOptionsView)
                 {
                     isOpen = true;
                     w.Activate();
@@ -88,10 +88,10 @@ namespace LoginUI.Views
             if (!isOpen) // ie if the window is not opened yet
             {
 
-                TransactionView transactionView = new TransactionView();
+                BillOptionsView billOptionView = new BillOptionsView();
                 //transactionView.Topmost = false;
-                transactionView.Show();
-                transactionView.Activate();
+                billOptionView.Show();
+                billOptionView.Activate();
 
             }
 
@@ -161,6 +161,48 @@ namespace LoginUI.Views
                 creditCustomerOptionsView.Show();
                 creditCustomerOptionsView.Activate();
 
+            }
+        }
+
+        private void btnLoadToDb_Click(object sender, RoutedEventArgs e)
+        {
+            bool isOpen = false;
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w is ExcelToDbView)
+                {
+                    isOpen = true;
+                    w.Activate();
+                }
+
+            }
+            if (!isOpen) // ie if the window is not opened yet
+            {
+
+                ExcelToDbView excelToDb = new ExcelToDbView();
+                excelToDb.Show();
+                excelToDb.Activate();
+
+            }
+
+        }
+
+        private void btnSyncBackupRestore_Click(object sender, RoutedEventArgs e)
+        {
+            bool isOpen = false;
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w is SyncBackupAndRestoreView)
+                {
+                    isOpen = true;
+                    w.Activate();
+                }
+            }
+            if (!isOpen) // ie if the window is not opened yet
+            {
+                SyncBackupAndRestoreView syncBackupAndRestoreView = new SyncBackupAndRestoreView();
+                syncBackupAndRestoreView.Show();
+                syncBackupAndRestoreView.Activate();
             }
         }
     }

@@ -28,13 +28,13 @@ namespace LoginUI.Views
             InitializeComponent();
         }
 
-        private void BtnSpecificInventorySearch_Click(object sender, RoutedEventArgs e)
+        private async void BtnSpecificInventorySearch_Click(object sender, RoutedEventArgs e)
         {
             ReportViewer.Reset();
             if (txtProductCodeSearch != null)
             {
                 string value = txtProductCodeSearch.Text;
-                DataTable dt = reportDAL.SearchSpecificInventoryStock(value);
+                DataTable dt = await  Task.Run( () => SearchReport(value));
                 ReportDataSource ds = new ReportDataSource("InventoryDataSet", dt);
 
                 ReportViewer.LocalReport.DataSources.Add(ds);
@@ -43,16 +43,29 @@ namespace LoginUI.Views
             }
         }
 
-        private void btnAllInventorySearch_Click(object sender, RoutedEventArgs e)
+        private async void btnAllInventorySearch_Click(object sender, RoutedEventArgs e)
         {
             ReportViewer.Reset();
-            DataTable dt = reportDAL.SearchInventoryStock();
+            //DataTable dt = reportDAL.SearchInventoryStock();
+            DataTable dt = await Task.Run(() => SearchReport(string.Empty));
             ReportDataSource ds = new ReportDataSource("InventoryDataSet", dt);
 
             ReportViewer.LocalReport.DataSources.Add(ds);
             ReportViewer.LocalReport.ReportEmbeddedResource = "LoginUI.Report.InventoryReport.rdlc";
             ReportViewer.RefreshReport();
 
+        }
+
+        private DataTable SearchReport(string value)
+        {
+            if (String.IsNullOrWhiteSpace(value))
+            {
+                return reportDAL.SearchInventoryStock();
+            }
+            else
+            {
+                return reportDAL.SearchSpecificInventoryStock(value);
+            }
         }
     }
 }
