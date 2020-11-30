@@ -35,14 +35,14 @@ namespace LoginUI.Views
             var myFile = directory.GetFiles()
                          .OrderByDescending(f => f.LastWriteTime)
                          .First().ToString();
-    
+            string filePath = System.IO.Path.Combine(directoryPath, myFile);
 
-            MessageBox.Show("The latest database backup file inside VeeraaDatabaseBackup folder will be uploaded to Google Drive. The process may take a while.", "Notice", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("The latest database backup file inside 'C:\\VeeraaDatabaseBackup' folder will be uploaded to Google Drive. The process may take a while.", "Notice", MessageBoxButton.OK, MessageBoxImage.Information);
 
            string clientId = "123";
            string clientSecret = "123";
 
-           bool result = GoogleDriveRepo.UploadFile(GoogleDriveRepo.GetService(clientId, clientSecret), myFile);
+           bool result = GoogleDriveRepo.UploadFile(GoogleDriveRepo.GetService(clientId, clientSecret), filePath);
            if(result == true)
             {
                 MessageBox.Show("File Uploaded successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);

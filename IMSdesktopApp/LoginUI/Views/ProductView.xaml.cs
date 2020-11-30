@@ -145,13 +145,13 @@ namespace LoginUI.Views
                 product.productCode = txtProductCode.Text;
                 product.deliveryAgent = txtDeliveryAgent.Text;
                 product.vendor = txtVendor.Text;
-                product.unitPriceINR = float.Parse(txtUnitPriceINR.Text);
-                product.unitPriceNPR = float.Parse(txtUnitPriceNPR.Text);
-                product.totalUnitIn = float.Parse(txtTotalUnitIn.Text);
-                product.remainingUnit = float.Parse(txtRemainingUnit.Text);
-                product.carrierChargePerUnit = float.Parse(txtCarrierCharge.Text);
-                product.totalCostPerUnit = float.Parse(txtTotalCost.Text);
-                product.sellingPrice = float.Parse(txtSellingPrice.Text);
+                product.unitPriceINR = float.Parse(string.IsNullOrWhiteSpace(txtUnitPriceINR.Text) == true ? "0" : txtUnitPriceINR.Text);
+                product.unitPriceNPR = float.Parse(string.IsNullOrWhiteSpace(txtUnitPriceNPR.Text) == true ? "0" : txtUnitPriceNPR.Text);
+                product.totalUnitIn = float.Parse(string.IsNullOrWhiteSpace(txtTotalUnitIn.Text) == true ? "0" : txtTotalUnitIn.Text);
+                product.remainingUnit = float.Parse(string.IsNullOrWhiteSpace(txtRemainingUnit.Text) == true ? "0" : txtRemainingUnit.Text);
+                product.carrierChargePerUnit = float.Parse(string.IsNullOrWhiteSpace(txtCarrierCharge.Text) == true ? "0" : txtCarrierCharge.Text);
+                product.totalCostPerUnit = float.Parse(string.IsNullOrWhiteSpace(txtTotalCost.Text) == true ? "0" : txtTotalCost.Text);
+                product.sellingPrice = float.Parse(string.IsNullOrWhiteSpace(txtSellingPrice.Text) == true ? "0" : txtSellingPrice.Text);
                 product.Id = int.Parse(txtId.Text);
 
                 //bool success = productData.update(product);
